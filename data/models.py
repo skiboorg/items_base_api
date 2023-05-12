@@ -45,7 +45,7 @@ class Product(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.qr:
-            qr = segno.make_qr(f'/qr/{self.uuid}', version=23, error='L', mask=3)
+            qr = segno.make_qr(f'http://91.228.155.186:8080/qr/{self.uuid}', version=23, error='L', mask=3)
             path = f'{settings.MEDIA_ROOT}/product/qr/{self.uuid}.png'
             qr.save(path, scale=10, dark=(0,0,0,), light=(240, 240, 240), border=0)
             self.qr = f'product/qr/{self.uuid}.png'
